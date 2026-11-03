@@ -205,3 +205,7 @@ details p{padding:0 0 20px;color:var(--muted)}
 .map{margin-top:12px;border-radius:20px;overflow:hidden}
 @media (max-width:1024px){.svc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.svc-grid>.photo-card,.svc-grid>.photo-card.w3{grid-column:auto}.feature{grid-template-columns:1fr}}
 @media (max-width:620px){.svc-grid{grid-template-columns:1fr}.feature .pics img{height:240px}.feature .body{padding:26px}}
+
+/* Starting price labels */
+.from-lbl{display:block;font-family:Manrope,system-ui,sans-serif;font-size:14px;font-weight:700;letter-spacing:.02em;color:var(--muted);margin-bottom:2px}
+.price-note{display:block;font-size:12.5px;line-height:1.4;font-weight:500;color:var(--muted);margin-top:6px}
