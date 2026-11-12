@@ -79,7 +79,7 @@
 <div class="pp-perks"><span>See your new clients</span><span>Track your earnings</span><span>Unlock free cleanings</span></div></div>
 <form class="pp-login stack" id="pp-form" style="gap:16px" autocomplete="on">
 <h2 style="font-size:28px">Partner login</h2>
-<label class="pp-lbl">Partner code<input class="pp-in" id="pp-code" name="code" placeholder="e.g. MARIA15" autocapitalize="characters" required></label>
+<label class="pp-lbl">Partner code<input class="pp-in" id="pp-code" name="code" placeholder="e.g. MARIA20" autocapitalize="characters" required></label>
 <label class="pp-lbl">PIN<input class="pp-in" id="pp-pin" name="pin" type="password" inputmode="numeric" maxlength="6" placeholder="4 digits" required></label>
 <div class="pp-err" id="pp-err"></div>
 <button class="btn btn-primary" type="submit" id="pp-go" style="border:0;font-size:17px">See my dashboard</button>
@@ -103,7 +103,7 @@
 </div>
 <div class="card stack" style="gap:12px"><b style="font-size:19px;color:var(--navy)">Your code</b>
 <div class="pp-code" id="pp-mycode">CODE</div>
-<p style="color:var(--muted);font-size:14px">Your followers get 15% off their first cleaning.</p>
+<p style="color:var(--muted);font-size:14px">Your followers get 20% off their first cleaning and 15% off repeat cleanings.</p>
 <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="pp-btn" type="button" id="pp-copycode">Copy code</button><button class="pp-btn" type="button" id="pp-copycap">Copy a caption</button></div></div>
 </div>
 
@@ -166,7 +166,7 @@ $("pp-form").addEventListener("submit",function(ev){ev.preventDefault();err("");
 $("pp-out").addEventListener("click",function(){$("pp-dash").style.display="none";$("pp-loginwrap").style.display="block";$("pp-pin").value=""});
 function copy(t,btn){var o=btn.textContent;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){btn.textContent="Copied!";setTimeout(function(){btn.textContent=o},1500)}).catch(function(){prompt("Copy this:",t)})}
 $("pp-copycode").addEventListener("click",function(){copy($("pp-mycode").textContent,this)});
-$("pp-copycap").addEventListener("click",function(){var c=$("pp-mycode").textContent;copy("NYC friends! I booked @cleancleanersnyc and my place is spotless. Use my code "+c+" for 15% off your first cleaning. Book at cleancleanersnyc.com #ad",this)});
+$("pp-copycap").addEventListener("click",function(){var c=$("pp-mycode").textContent;copy("NYC friends! I booked @cleancleanersnyc and my place is spotless. Use my code "+c+" for 20% off your first cleaning. Book at cleancleanersnyc.com #ad",this)});
 })();
 </script>
 </main>
