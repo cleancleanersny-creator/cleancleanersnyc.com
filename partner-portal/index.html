@@ -103,16 +103,16 @@
 </div>
 <div class="card stack" style="gap:12px"><b style="font-size:19px;color:var(--navy)">Your code</b>
 <div class="pp-code" id="pp-mycode">CODE</div>
-<p style="color:var(--muted);font-size:14px">Your followers get 20% off their first cleaning and 15% off repeat cleanings.</p>
+<p style="color:var(--muted);font-size:14px">Your followers get 20% off their first cleaning.</p>
 <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="pp-btn" type="button" id="pp-copycode">Copy code</button><button class="pp-btn" type="button" id="pp-copycap">Copy a caption</button></div></div>
 </div>
 
 <div class="card stack" style="gap:14px"><b style="font-size:19px;color:var(--navy)">Creator Club levels</b>
 <div class="pp-ladder" id="pp-ladder">
 <div class="pp-step" data-l="1"><b>Member</b><span>Earn for every new client</span></div>
-<div class="pp-step" data-l="2"><b>Kitchen Experience</b><span>Complimentary Kitchen Deep Clean</span></div>
-<div class="pp-step" data-l="3"><b>Insider</b><span>Unlock free cleanings for your home</span></div>
-<div class="pp-step" data-l="4" style="opacity:.55"><b>Ambassador</b><span>Coming soon</span></div>
+<div class="pp-step" data-l="2"><b>Kitchen Experience</b><span>Complimentary Steam Kitchen Deep Cleaning</span></div>
+<div class="pp-step" data-l="3"><b>Insider</b><span>Complimentary Steam Bathroom Cleaning</span></div>
+<div class="pp-step" data-l="4"><b>Ambassador</b><span>Full Deep Cleaning for top creators</span></div>
 </div><p id="pp-freebies" style="font-size:14px;color:var(--muted)"></p></div>
 
 <div class="card stack" style="gap:8px;overflow-x:auto"><b style="font-size:19px;color:var(--navy)">Your new clients</b>
@@ -141,13 +141,13 @@ function show(data){
  $("pp-mycode").textContent=p.code;
  $("s-total").textContent=money(sum(done));$("s-paid").textContent=money(sum(paid));
  $("s-pending").textContent=money(sum(done)-sum(paid));$("s-clients").textContent=n;
- var lvl=1;if(/done|yes/i.test(p.kitchen||""))lvl=2;if(n>=5)lvl=3;
+ var lvl=1;if(/done|yes/i.test(p.kitchen||""))lvl=2;if(n>=5)lvl=3;if(p.ambassador)lvl=4;
  $("pp-level").textContent=["","Member","Kitchen Experience","Insider","Ambassador"][lvl];
  document.querySelectorAll(".pp-step").forEach(function(s){var l=+s.dataset.l;s.className="pp-step"+(l<lvl?" done":l===lvl?" now done":"")});
  var k=n%5,left=5-k,pct=k/5*100;
- $("pp-next").innerHTML="<b style='color:var(--navy)'>"+left+" more new client"+(left>1?"s":"")+"</b> to your next free Deep Cleaning.";setTimeout(function(){$("pp-barfill").style.width=Math.max(pct,4)+"%"},50);
+ $("pp-next").innerHTML="<b style='color:var(--navy)'>"+left+" more new client"+(left>1?"s":"")+"</b> to your next Steam Bathroom Cleaning.";setTimeout(function(){$("pp-barfill").style.width=Math.max(pct,4)+"%"},50);
  var free=Math.floor(n/5);
- $("pp-freebies").textContent=free?("Free Deep Cleanings unlocked so far: "+free+". Text us to schedule yours."):"Keep bringing new clients to unlock free cleanings for your home.";
+ $("pp-freebies").textContent=free?("Steam Bathroom Cleanings unlocked so far: "+free+". Text us to schedule yours."):"Keep bringing new clients to unlock free cleanings for your home.";
  var rows=r.slice().sort(function(a,b){return new Date(b.date)-new Date(a.date)});
  $("pp-rows").innerHTML=rows.length?rows.map(function(x){var rw=(x.status==="Completed"||x.status==="Paid")?money(Number(x.reward)||REWARD):"-";return "<tr><td>"+esc(x.date)+"</td><td><b>"+esc(x.client)+"</b></td><td class='hide-s'>"+esc(x.service)+"</td><td><span class='pp-pill "+esc(x.status)+"'>"+esc(x.status)+"</span></td><td><b>"+rw+"</b></td></tr>"}).join(""):"<tr><td colspan='5' class='pp-empty'>No clients yet. Share your code to get your first one!</td></tr>";
  $("pp-loginwrap").style.display="none";$("pp-dash").style.display="block";window.scrollTo(0,0);
@@ -175,7 +175,7 @@ $("pp-copycap").addEventListener("click",function(){var c=$("pp-mycode").textCon
 <p style="margin-top:12px">BBB-accredited residential &amp; commercial cleaning across all five boroughs.</p>
 <address><b style="margin:10px 0 0">CLEAN CLEANERS NYC LLC</b>2171 68th St<br>Brooklyn, NY 11204<br><a href="tel:+19297605230">(929) 760-5230</a><br>Mon to Fri 8am to 6pm<br>Sat 9am to 5pm · Sun 10am to 4pm</address></div>
 <div><b>Services</b><a href="../brooklyn/deep-cleaning/">Deep Cleaning in Brooklyn</a><a href="../manhattan/move-out-cleaning/">Move-Out Cleaning in Manhattan</a><a href="../queens/house-cleaning/">House Cleaning in Queens</a><a href="../bronx/house-cleaning/">House Cleaning in the Bronx</a><a href="../staten-island/house-cleaning/">House Cleaning in Staten Island</a><a href="../building-cleaning/">Building &amp; Common Areas</a><a href="../#services">All services</a></div>
-<div><b>Company</b><a href="https://widget.zenbooker.com/book/cleancleanersnycllc">Book Now</a><a href="../#reviews">Reviews</a><a href="../#faq">FAQ</a><a href="../policies.html">Policies</a><a href="../referral-partners/">Become a Partner</a><a href="../partner-portal/">Partner Login</a></div>
+<div><b>Company</b><a href="https://widget.zenbooker.com/book/cleancleanersnycllc">Book Now</a><a href="../#reviews">Reviews</a><a href="../#faq">FAQ</a><a href="../policies.html">Policies</a><a href="../referral-partners/">Become a Partner</a><a href="../partner-portal/">Partner Login</a><a href="../refer-a-friend/">Refer a Friend</a></div>
 <div><b>Follow us</b><a href="https://www.instagram.com/cleancleanersnyc/">Instagram</a><a href="https://www.facebook.com/cleancleanersnyc/">Facebook</a><a href="https://www.bbb.org/us/ny/brooklyn/profile/cleaning-services/clean-cleaners-nyc-llc-0121-87183449">BBB profile</a><a href="https://www.thumbtack.com/ny/brooklyn/house-cleaning/clean-cleaners-nyc-llc/service/513832679907409927">Thumbtack</a><a href="https://www.yelp.com/biz/clean-cleaners-nyc-brooklyn-2" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px"><img src="../assets/img/yelp-burst.svg" alt="" width="16" height="16" style="width:16px;height:16px;display:inline-block">Find us on Yelp</a></div>
 </div><div class="legal">© 2026 CLEAN CLEANERS NYC LLC. All prices + tax.</div></div></footer>
 <div class="mbar"><a class="btn btn-primary" href="https://widget.zenbooker.com/book/cleancleanersnycllc">Book Now</a><a class="btn btn-ghost" href="tel:+19297605230">Call</a></div>
