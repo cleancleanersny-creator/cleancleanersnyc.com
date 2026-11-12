@@ -72,13 +72,31 @@
 <p style="color:var(--muted);margin:0"><b style="color:var(--navy)">Home cleaning starting at $199 + tax.</b></p><small class="price-note" style="margin-top:-8px">Starting price based on a 1 bedroom, 1 bathroom apartment.</small></div>
 </div></section>
 
-<section class="section white" id="creator-club"><div class="wrap stack" style="gap:32px">
-<div class="stack"><span class="eyebrow">Creator Club</span><h2>Unlock free cleanings as your code books</h2><p class="lead">The more your audience books, the more free cleanings you get. Limited Founding Creator spots for 2026.</p></div>
-<div class="grid g4" style="gap:20px">
-<div class="card stack" style="gap:10px"><span class="tag" style="align-self:flex-start">Level 1</span><b style="font-size:20px;color:var(--navy)">Member</b><p style="color:var(--muted);margin:0;font-size:14px;font-weight:700">Unlock: get approved</p><p style="margin:0">A reward for every new client who completes a first cleaning with your code. Your followers get <b style="color:var(--navy)">20% off</b> their first cleaning.</p></div>
-<div class="card stack" style="gap:10px"><span class="tag" style="align-self:flex-start">Level 2</span><b style="font-size:20px;color:var(--navy)">Kitchen Experience</b><p style="color:var(--muted);margin:0;font-size:14px;font-weight:700">Unlock: approved creators</p><p style="margin:0">A <b style="color:var(--navy)">complimentary Kitchen Deep Clean</b>, with steam on fridge and oven. In return: 1 Reel as a Collab post and 3 Stories.</p></div>
-<div class="card stack" style="gap:10px"><span class="tag" style="align-self:flex-start">Level 3</span><b style="font-size:20px;color:var(--navy)">Insider</b><p style="color:var(--muted);margin:0;font-size:14px;font-weight:700">Unlock: every 5 new clients</p><p style="margin:0">A <b style="color:var(--navy)">free full Deep Cleaning</b> of your home (up to 2 bedrooms) for every 5 new clients.</p></div>
-<div class="card stack" style="gap:10px;opacity:.55"><span class="tag" style="align-self:flex-start">Level 4</span><b style="font-size:20px;color:var(--navy)">Ambassador</b><p style="color:var(--muted);margin:0;font-size:14px;font-weight:700">Coming soon</p></div>
+<section class="section" id="creator-club" style="background:linear-gradient(180deg,#fff 0%,#EAF7FD 100%)"><div class="wrap stack" style="gap:32px">
+<style>
+.cc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.cc-card{position:relative;border-radius:24px;padding:28px 24px;display:flex;flex-direction:column;gap:12px;overflow:hidden;box-shadow:0 14px 34px rgba(42,52,97,.12);transition:transform .2s,box-shadow .2s}
+.cc-card:hover{transform:translateY(-6px) rotate(-.6deg);box-shadow:0 22px 44px rgba(42,52,97,.22)}
+.cc-ico{width:58px;height:58px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;background:rgba(255,255,255,.22);position:relative;z-index:1}
+.cc-lvl{font-family:Montserrat,sans-serif;font-weight:900;font-size:12px;letter-spacing:.22em;text-transform:uppercase;opacity:.85;position:relative;z-index:1}
+.cc-card h3{font-size:25px;margin:0;position:relative;z-index:1}
+.cc-card p{margin:0;position:relative;z-index:1}
+.cc-unlock{display:inline-block;align-self:flex-start;font-size:13px;font-weight:800;border-radius:999px;padding:6px 12px;position:relative;z-index:1}
+.cc-1{background:linear-gradient(150deg,#DDF1FA 0%,#fff 75%);color:var(--navy);border:2px solid #BFE6F7}.cc-1 .cc-ico{background:#fff;box-shadow:0 6px 14px rgba(45,168,221,.25)}.cc-1 .cc-unlock{background:#2DA8DD;color:#fff}
+.cc-2{background:linear-gradient(150deg,#3BB8EA 0%,#1E8FC2 100%);color:#fff}.cc-2 h3{color:#fff}.cc-2 .cc-unlock{background:#fff;color:#1E8FC2}
+.cc-3{background:linear-gradient(150deg,#2A3461 0%,#1B2250 65%,#1E8FC2 140%);color:#fff}.cc-3 h3{color:#fff}.cc-3 .cc-unlock{background:#E8A317;color:#1B2250}
+.cc-2::after,.cc-3::after{content:"";position:absolute;right:-50px;top:-50px;width:170px;height:170px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.28),transparent 70%)}
+.cc-3::after{background:radial-gradient(circle,rgba(45,168,221,.55),transparent 70%)}
+.cc-4{background:repeating-linear-gradient(135deg,#F6F8FB 0 12px,#EDF1F7 12px 24px);color:#8a93ab;border:2px dashed #CBD3E6;box-shadow:none}.cc-4 h3{color:#8a93ab}.cc-4 .cc-ico{background:#fff;filter:grayscale(1);opacity:.7}.cc-4 .cc-unlock{background:#fff;color:#8a93ab;border:1px solid #CBD3E6}
+@media (max-width:1024px){.cc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.cc-grid{grid-template-columns:1fr}}
+</style>
+<div class="stack"><span class="eyebrow">Creator Club</span><h2>Level up. Unlock free cleanings &#10024;</h2><p class="lead">The more your audience books, the more free cleanings you get. Limited Founding Creator spots for 2026.</p></div>
+<div class="cc-grid">
+<div class="cc-card cc-1"><div class="cc-ico">&#129533;</div><span class="cc-lvl">Level 1</span><h3>Member</h3><span class="cc-unlock">Unlock: get approved</span><p>Your own promo code and Partner Portal. Earn a reward for every new client, and your followers get <b>20% off</b> their first cleaning.</p></div>
+<div class="cc-card cc-2"><div class="cc-ico">&#127859;</div><span class="cc-lvl">Level 2</span><h3>Kitchen Experience</h3><span class="cc-unlock">Unlock: approved creators</span><p>A complimentary Kitchen Deep Clean, so you can experience Clean Cleaners NYC for yourself.</p></div>
+<div class="cc-card cc-3"><div class="cc-ico">&#127968;</div><span class="cc-lvl">Level 3</span><h3>Insider</h3><span class="cc-unlock">Unlock: grow with us</span><p>Keep bringing new clients and unlock <b>free cleanings for your own home</b>. The more you share, the more you get.</p></div>
+<div class="cc-card cc-4"><div class="cc-ico">&#128081;</div><span class="cc-lvl">Level 4</span><h3>Ambassador</h3><span class="cc-unlock">Coming soon</span><p>Something big for our top creators. Stay tuned.</p></div>
 </div>
 <small class="price-note" style="margin-top:-8px">Rewards count each new client's first completed cleaning. Repeat bookings are not included. Track everything anytime in your <a href="../partner-portal/">Partner Portal</a>. Creator Club perks are for approved social media creators.</small>
 </div></section>

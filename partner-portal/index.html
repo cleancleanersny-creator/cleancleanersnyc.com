@@ -111,7 +111,7 @@
 <div class="pp-ladder" id="pp-ladder">
 <div class="pp-step" data-l="1"><b>Member</b><span>Earn for every new client</span></div>
 <div class="pp-step" data-l="2"><b>Kitchen Experience</b><span>Complimentary Kitchen Deep Clean</span></div>
-<div class="pp-step" data-l="3"><b>Insider</b><span>Every 5 new clients: free Deep Cleaning</span></div>
+<div class="pp-step" data-l="3"><b>Insider</b><span>Unlock free cleanings for your home</span></div>
 <div class="pp-step" data-l="4" style="opacity:.55"><b>Ambassador</b><span>Coming soon</span></div>
 </div><p id="pp-freebies" style="font-size:14px;color:var(--muted)"></p></div>
 
@@ -147,7 +147,7 @@ function show(data){
  var k=n%5,left=5-k,pct=k/5*100;
  $("pp-next").innerHTML="<b style='color:var(--navy)'>"+left+" more new client"+(left>1?"s":"")+"</b> to your next free Deep Cleaning.";setTimeout(function(){$("pp-barfill").style.width=Math.max(pct,4)+"%"},50);
  var free=Math.floor(n/5);
- $("pp-freebies").textContent=free?("Free Deep Cleanings unlocked so far: "+free+". Text us to schedule yours."):"Every 5 new clients unlock a free Deep Cleaning for your home.";
+ $("pp-freebies").textContent=free?("Free Deep Cleanings unlocked so far: "+free+". Text us to schedule yours."):"Keep bringing new clients to unlock free cleanings for your home.";
  var rows=r.slice().sort(function(a,b){return new Date(b.date)-new Date(a.date)});
  $("pp-rows").innerHTML=rows.length?rows.map(function(x){var rw=(x.status==="Completed"||x.status==="Paid")?money(Number(x.reward)||REWARD):"-";return "<tr><td>"+esc(x.date)+"</td><td><b>"+esc(x.client)+"</b></td><td class='hide-s'>"+esc(x.service)+"</td><td><span class='pp-pill "+esc(x.status)+"'>"+esc(x.status)+"</span></td><td><b>"+rw+"</b></td></tr>"}).join(""):"<tr><td colspan='5' class='pp-empty'>No clients yet. Share your code to get your first one!</td></tr>";
  $("pp-loginwrap").style.display="none";$("pp-dash").style.display="block";window.scrollTo(0,0);
