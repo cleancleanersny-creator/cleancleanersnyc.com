@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Opening Messages</title>
+<style>
+body{margin:0;font-family:-apple-system,system-ui,"Segoe UI",sans-serif;background:#f3f5fa;color:#1b2140;display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center;padding:24px;box-sizing:border-box}
+a{display:inline-block;margin-top:16px;background:#2DA8DD;color:#06253a;font-weight:600;text-decoration:none;padding:14px 22px;border-radius:10px}
+p{color:#5d6584;font-size:14px}
+</style>
+</head>
+<body>
+<div id="box" hidden>
+<div style="font-size:18px;font-weight:600">Opening Messages...</div>
+<a id="go" href="#">Open Messages</a>
+<p>If Messages did not open, tap the button.</p>
+</div>
+<script>
+(function(){
+  var q=new URLSearchParams(location.search);
+  var to=(q.get("to")||"").replace(/[^0-9+]/g,"");
+  var body=q.get("b")||"";
+  if(to.replace(/\D/g,"").length<10){location.replace("/");return;}
+  var ios=/iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent);
+  var url="sms:"+to+(body?(ios?"&":"?")+"body="+encodeURIComponent(body):"");
+  document.getElementById("go").href=url;
+  document.getElementById("box").hidden=false;
+  location.href=url;
+})();
+</script>
+</body>
+</html>
