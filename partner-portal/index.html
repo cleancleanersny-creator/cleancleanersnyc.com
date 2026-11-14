@@ -94,7 +94,7 @@
 <div class="pp-stat hl"><small>Total earned</small><b id="s-total">$0</b></div>
 <div class="pp-stat"><small>Pending payout</small><b id="s-pending">$0</b></div>
 <div class="pp-stat"><small>Paid out</small><b id="s-paid">$0</b></div>
-<div class="pp-stat"><small>New clients</small><b id="s-clients">0</b></div>
+<div class="pp-stat"><small>Cleanings with your code</small><b id="s-clients">0</b></div>
 </div>
 
 <div class="grid g2" style="gap:20px">
@@ -110,9 +110,9 @@
 <div class="card stack" style="gap:14px"><b style="font-size:19px;color:var(--navy)">Creator Club levels</b>
 <div class="pp-ladder" id="pp-ladder">
 <div class="pp-step" data-l="1"><b>Member</b><span>Complimentary Basic Cleaning + earn for every new client</span></div>
-<div class="pp-step" data-l="2"><b>Kitchen Experience</b><span>Complimentary Steam Kitchen Deep Cleaning</span></div>
-<div class="pp-step" data-l="3"><b>Insider</b><span>Complimentary Steam Bathroom Cleaning</span></div>
-<div class="pp-step" data-l="4"><b>Ambassador</b><span>Full Deep Cleaning with steam, for top creators</span></div>
+<div class="pp-step" data-l="2"><b>Kitchen Experience</b><span>5 cleanings with your code: Steam Kitchen Deep Cleaning</span></div>
+<div class="pp-step" data-l="3"><b>Insider</b><span>7 cleanings: Steam Bathroom Cleaning and Sanitizing</span></div>
+<div class="pp-step" data-l="4"><b>Ambassador</b><span>10 cleanings: Full Deep Cleaning with steam</span></div>
 </div><p id="pp-freebies" style="font-size:14px;color:var(--muted)"></p></div>
 
 <div class="card stack" style="gap:8px;overflow-x:auto"><b style="font-size:19px;color:var(--navy)">Your new clients</b>
@@ -135,25 +135,23 @@ function show(data){
  var p=data.partner,r=data.referrals||[];
  var done=r.filter(function(x){return x.status==="Completed"||x.status==="Paid"});
  var paid=r.filter(function(x){return x.status==="Paid"});
- var sum=function(a){return a.reduce(function(s,x){return s+(Number(x.reward)||REWARD)},0)};
+ var rv=function(x){return (x.reward===null||x.reward===undefined||x.reward==="")?REWARD:(Number(x.reward)||0)};
+ var sum=function(a){return a.reduce(function(s,x){return s+rv(x)},0)};
  var n=done.length;
  $("pp-hello").textContent="Hi, "+(p.name||"partner")+"!";
  $("pp-mycode").textContent=p.code;
  $("s-total").textContent=money(sum(done));$("s-paid").textContent=money(sum(paid));
  $("s-pending").textContent=money(sum(done)-sum(paid));$("s-clients").textContent=n;
- var lvl=1;if(/done|yes/i.test(p.kitchen||""))lvl=2;if(n>=5)lvl=3;if(p.ambassador)lvl=4;
+ var lvl=1;if(n>=5||/done|yes/i.test(p.kitchen||""))lvl=2;if(n>=7)lvl=3;if(n>=10||p.ambassador)lvl=4;
  $("pp-level").textContent=["","Member","Kitchen Experience","Insider","Ambassador"][lvl];
  document.querySelectorAll(".pp-step").forEach(function(s){var l=+s.dataset.l;s.className="pp-step"+(l<lvl?" done":l===lvl?" now done":"")});
- var k=n%5,left=5-k,pct=k/5*100;
- if(lvl<2){
-  $("pp-next").innerHTML="Next level: <b style='color:var(--navy)'>Kitchen Experience</b>. Keep sharing your code and creating great content: strong engagement unlocks a complimentary Steam Kitchen Deep Cleaning.";
-  pct=Math.min(n,5)/5*100;
- } else {
-  $("pp-next").innerHTML="<b style='color:var(--navy)'>"+left+" more new client"+(left>1?"s":"")+"</b> to your next Steam Bathroom Cleaning.";
- }
+ var goals=[0,5,7,10],names=["","Kitchen Experience (Steam Kitchen Deep Cleaning)","Insider (Steam Bathroom Cleaning and Sanitizing)","Ambassador (Full Deep Cleaning with steam)"],pct=100;
+ if(lvl<4){var g=goals[lvl],prev=lvl===1?0:goals[lvl-1],left=Math.max(g-n,1);pct=Math.max(0,Math.min(1,(n-prev)/(g-prev)))*100;
+  $("pp-next").innerHTML="<b style='color:var(--navy)'>"+left+" more cleaning"+(left>1?"s":"")+"</b> booked with your code to unlock "+names[lvl]+".";}
+ else{$("pp-next").innerHTML="<b style='color:var(--navy)'>You are an Ambassador!</b> Text us to schedule your Full Deep Cleaning with steam.";}
  setTimeout(function(){$("pp-barfill").style.width=Math.max(pct,4)+"%"},50);
- var free=Math.floor(n/5);
- $("pp-freebies").textContent=free?("Steam Bathroom Cleanings unlocked so far: "+free+". Text us to schedule yours."):"Keep bringing new clients to unlock free cleanings for your home.";
+ var un=[];if(lvl>=2)un.push("Steam Kitchen Deep Cleaning");if(lvl>=3)un.push("Steam Bathroom Cleaning and Sanitizing");if(lvl>=4)un.push("Full Deep Cleaning with steam");
+ $("pp-freebies").textContent=un.length?("Unlocked: "+un.join(", ")+". Text us to schedule."):"Every cleaning booked with your code moves you up a level.";
  var rows=r.slice().sort(function(a,b){return new Date(b.date)-new Date(a.date)});
  $("pp-rows").innerHTML=rows.length?rows.map(function(x){var rw=(x.status==="Completed"||x.status==="Paid")?money(Number(x.reward)||REWARD):"-";return "<tr><td>"+esc(x.date)+"</td><td><b>"+esc(x.client)+"</b></td><td class='hide-s'>"+esc(x.service)+"</td><td><span class='pp-pill "+esc(x.status)+"'>"+esc(x.status)+"</span></td><td><b>"+rw+"</b></td></tr>"}).join(""):"<tr><td colspan='5' class='pp-empty'>No clients yet. Share your code to get your first one!</td></tr>";
  $("pp-loginwrap").style.display="none";$("pp-dash").style.display="block";window.scrollTo(0,0);
