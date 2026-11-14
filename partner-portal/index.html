@@ -145,7 +145,13 @@ function show(data){
  $("pp-level").textContent=["","Member","Kitchen Experience","Insider","Ambassador"][lvl];
  document.querySelectorAll(".pp-step").forEach(function(s){var l=+s.dataset.l;s.className="pp-step"+(l<lvl?" done":l===lvl?" now done":"")});
  var k=n%5,left=5-k,pct=k/5*100;
- $("pp-next").innerHTML="<b style='color:var(--navy)'>"+left+" more new client"+(left>1?"s":"")+"</b> to your next Steam Bathroom Cleaning.";setTimeout(function(){$("pp-barfill").style.width=Math.max(pct,4)+"%"},50);
+ if(lvl<2){
+  $("pp-next").innerHTML="Next level: <b style='color:var(--navy)'>Kitchen Experience</b>. Keep sharing your code and creating great content: strong engagement unlocks a complimentary Steam Kitchen Deep Cleaning.";
+  pct=Math.min(n,5)/5*100;
+ } else {
+  $("pp-next").innerHTML="<b style='color:var(--navy)'>"+left+" more new client"+(left>1?"s":"")+"</b> to your next Steam Bathroom Cleaning.";
+ }
+ setTimeout(function(){$("pp-barfill").style.width=Math.max(pct,4)+"%"},50);
  var free=Math.floor(n/5);
  $("pp-freebies").textContent=free?("Steam Bathroom Cleanings unlocked so far: "+free+". Text us to schedule yours."):"Keep bringing new clients to unlock free cleanings for your home.";
  var rows=r.slice().sort(function(a,b){return new Date(b.date)-new Date(a.date)});
