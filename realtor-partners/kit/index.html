@@ -103,7 +103,17 @@
 <div class="kt-box"><b style="font-size:18px;color:var(--navy)">Need our COI for a building?</b><p style="margin:0">Our COI is ready, with General Liability and Workers' Comp. Email <a href="mailto:hello@cleancleanersnyc.com">hello@cleancleanersnyc.com</a> with the building's requirements and we will send it.</p>
 <div class="btns"><a class="btn btn-primary" href="sms:+19297605230">Text us about a client</a><a class="btn btn-ghost" href="tel:+19297605230">Call (929) 760-5230</a></div></div>
 </div></section></div>
-<script>(function(){var API="https://script.google.com/macros/s/AKfycbzot3P58sO5kxQg1OUbdwyDyrGSpRf2b8w4lz5jm2_kx1MHNu_L4P4YHZufperVEJa8qg/exec";var REWARD=15;var $=function(i){return document.getElementById(i)};
+<script>(function(){var API="https://script.google.com/macros/s/AKfycbzot3P58sO5kxQg1OUbdwyDyrGSpRf2b8w4lz5jm2_kx1MHNu_L4P4YHZufperVEJa8qg/exec";var REWARD=15;var DEMO={ok:true,page:"https://www.cleancleanersnyc.com/partners/alex-grapstein/",partner:{name:"Alex",code:"ALEX20"},referrals:[
+{date:"Sep 12, 2026",client:"Rachel S.",service:"Move In Cleaning",status:"Paid",reward:15},
+{date:"Sep 27, 2026",client:"Michael T.",service:"Move Out Cleaning",status:"Paid",reward:15},
+{date:"Oct 4, 2026",client:"Priya K.",service:"Deep Cleaning",status:"Paid",reward:15},
+{date:"Oct 15, 2026",client:"David L.",service:"Move Out Cleaning",status:"Paid",reward:15},
+{date:"Oct 29, 2026",client:"Sofia M.",service:"Move In Cleaning",status:"Paid",reward:15},
+{date:"Nov 3, 2026",client:"James W.",service:"Deep Cleaning",status:"Completed",reward:15},
+{date:"Nov 9, 2026",client:"Emily R.",service:"Move In Cleaning",status:"Completed",reward:15},
+{date:"Nov 14, 2026",client:"Daniel C.",service:"Post Construction",status:"Completed",reward:15},
+{date:"Nov 21, 2026",client:"Hannah B.",service:"Move Out Cleaning",status:"Booked",reward:0},
+{date:"Nov 24, 2026",client:"Lucas P.",service:"Deep Cleaning",status:"Booked",reward:0}]};var $=function(i){return document.getElementById(i)};
 function money(n){return "$"+n.toLocaleString("en-US")}
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
 function err(m){var e=$("kt-err");e.textContent=m;e.style.display=m?"block":"none"}
@@ -113,11 +123,11 @@ var done=r.filter(function(x){return x.status==="Completed"||x.status==="Paid"})
 $("kt-hello").textContent="Hi, "+cap((p.name||"partner").split(" ")[0])+"!";$("kt-mycode").textContent=p.code;
 $("s-total").textContent=money(sum(done));$("s-paid").textContent=money(sum(paid));$("s-pending").textContent=money(sum(done)-sum(paid));$("s-clients").textContent=done.length;
 var link="https://www.cleancleanersnyc.com/gift/?c="+encodeURIComponent(p.code)+(p.name?"&n="+encodeURIComponent(cap(p.name)):"")+(p.company?"&co="+encodeURIComponent(p.company):"");
-$("kt-page").textContent=link;$("kt-openpage").href=link;
+if(d.page)link=d.page;$("kt-page").textContent=link;$("kt-openpage").href=link;
 var rows=r.slice().sort(function(a,b){return new Date(b.date)-new Date(a.date)});
 $("kt-rows").innerHTML=rows.length?rows.map(function(x){var ok=x.status==="Completed"||x.status==="Paid";return "<tr><td>"+esc(x.date)+"</td><td><b>"+esc(x.client)+"</b></td><td class='kt-hide'>"+esc(x.service)+"</td><td>"+esc(x.status)+"</td><td><b>"+(ok?money(rv(x)):"-")+"</b></td></tr>"}).join(""):"<tr><td colspan='5' style='color:var(--muted)'>No clients yet. Send your client page to your first client!</td></tr>";
 $("kt-loginwrap").style.display="none";$("kt-dash").style.display="block";window.scrollTo(0,0);}
-$("kt-form").addEventListener("submit",function(ev){ev.preventDefault();err("");var code=$("kt-code").value.trim().toUpperCase(),pin=$("kt-pin").value.trim();var b=$("kt-go");b.disabled=true;b.textContent="Loading...";
+$("kt-form").addEventListener("submit",function(ev){ev.preventDefault();err("");var code=$("kt-code").value.trim().toUpperCase(),pin=$("kt-pin").value.trim();if(code==="DEMO"&&pin==="0000"){show(DEMO);return}var b=$("kt-go");b.disabled=true;b.textContent="Loading...";
 fetch(API+"?code="+encodeURIComponent(code)+"&pin="+encodeURIComponent(pin)).then(function(r){return r.json()}).then(function(d){if(d.ok)show(d);else err(d.error||"Code or PIN not found.")}).catch(function(){err("Could not connect. Please try again.")}).finally(function(){b.disabled=false;b.textContent="Open my Partner Kit"});});
 $("kt-out").addEventListener("click",function(){$("kt-dash").style.display="none";$("kt-loginwrap").style.display="block";$("kt-pin").value=""});
 $("kt-copypage").addEventListener("click",function(){var t=$("kt-page").textContent,btn=this;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){btn.textContent="Copied!";setTimeout(function(){btn.textContent="Copy link"},1500)}).catch(function(){prompt("Copy this:",t)})});
