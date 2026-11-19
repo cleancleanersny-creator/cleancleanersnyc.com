@@ -123,7 +123,7 @@ var done=r.filter(function(x){return x.status==="Completed"||x.status==="Paid"})
 $("kt-hello").textContent="Hi, "+cap((p.name||"partner").split(" ")[0])+"!";$("kt-mycode").textContent=p.code;
 $("s-total").textContent=money(sum(done));$("s-paid").textContent=money(sum(paid));$("s-pending").textContent=money(sum(done)-sum(paid));$("s-clients").textContent=done.length;
 var link="https://www.cleancleanersnyc.com/gift/?c="+encodeURIComponent(p.code)+(p.name?"&n="+encodeURIComponent(cap(p.name)):"")+(p.company?"&co="+encodeURIComponent(p.company):"");
-if(d.page)link=d.page;$("kt-page").textContent=link;$("kt-openpage").href=link;
+var PAGES={ALEX20:"https://www.cleancleanersnyc.com/partners/alex-grapstein/"};if(d.page)link=d.page;else if(PAGES[p.code])link=PAGES[p.code];$("kt-page").textContent=link;$("kt-openpage").href=link;
 var rows=r.slice().sort(function(a,b){return new Date(b.date)-new Date(a.date)});
 $("kt-rows").innerHTML=rows.length?rows.map(function(x){var ok=x.status==="Completed"||x.status==="Paid";return "<tr><td>"+esc(x.date)+"</td><td><b>"+esc(x.client)+"</b></td><td class='kt-hide'>"+esc(x.service)+"</td><td>"+esc(x.status)+"</td><td><b>"+(ok?money(rv(x)):"-")+"</b></td></tr>"}).join(""):"<tr><td colspan='5' style='color:var(--muted)'>No clients yet. Send your client page to your first client!</td></tr>";
 $("kt-loginwrap").style.display="none";$("kt-dash").style.display="block";window.scrollTo(0,0);}
