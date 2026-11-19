@@ -69,7 +69,7 @@
 <div class="gf-card"><span class="eyebrow">Your gift</span><div class="gf-big">20% OFF</div>
 <p style="color:var(--muted);margin:0">your first cleaning, plus <b style="color:var(--navy)">15% off repeat cleanings</b>.</p>
 <div class="gf-code"><div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:12px;font-weight:800;letter-spacing:2px;color:var(--muted)">YOUR CODE</span><b id="gf-code">ASK YOUR AGENT</b></div><button type="button" class="gf-copy" id="gf-copy">Copy</button></div>
-<a class="btn btn-primary gf-book" href="https://widget.zenbooker.com/book/cleancleanersnycllc" style="text-align:center">Book my cleaning</a>
+<p id="gf-repeat" style="display:none;margin:0;font-size:14px;color:var(--navy)"></p><a class="btn btn-primary gf-book" href="https://widget.zenbooker.com/book/cleancleanersnycllc" style="text-align:center">Book my cleaning</a>
 <p style="font-size:13px;color:var(--muted);margin:0">Enter your code when you book. 20% off applies one time per client. All prices + tax.</p></div>
 </div></section>
 <div class="gf-trust"><div class="wrap"><span>&#9989; BBB Accredited</span><span>&#128737; Fully insured</span><span>&#128205; All 5 NYC boroughs</span><span>&#129532; We bring all supplies</span><span>&#9200; Call today for a cleaning tomorrow</span></div></div>
@@ -89,8 +89,8 @@
 </div>
 <p style="margin:0;color:var(--muted)">Prefer to talk? Call or text <a href="tel:+19297605230">(929) 760-5230</a> and mention your code. Call us today for a cleaning tomorrow!</p>
 </div></section>
-<script>(function(){var q=new URLSearchParams(location.search);var c=(q.get("c")||"").replace(/[^A-Za-z0-9_-]/g,"").toUpperCase().slice(0,25);var n=(q.get("n")||"").slice(0,60).trim();var co=(q.get("co")||"").slice(0,60).trim();
-if(c){document.getElementById("gf-code").textContent=c;}
+<script>(function(){var q=new URLSearchParams(location.search);var c=(q.get("c")||"").replace(/[^A-Za-z0-9_-]/g,"").toUpperCase().slice(0,25);var n=(q.get("n")||"").slice(0,60).trim().toLowerCase().replace(/(^|\s)\S/g,function(x){return x.toUpperCase()});var co=(q.get("co")||"").slice(0,60).trim();
+if(c){document.getElementById("gf-code").textContent=c;if(/20$/.test(c)){var rp=document.getElementById("gf-repeat");rp.innerHTML="Repeat cleanings: use code <b>"+c.replace(/20$/,"15")+"</b> for 15% off.";rp.style.display="block";}}
 if(n){document.getElementById("gf-title").textContent=n.split(" ")[0]+" sent you a clean start 🎁";document.getElementById("gf-eyebrow").textContent="A gift from "+n+(co?", "+co:"");}
 var b=document.getElementById("gf-copy");b.addEventListener("click",function(){var t=document.getElementById("gf-code").textContent;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent="Copied!";},function(){b.textContent=t;});setTimeout(function(){b.textContent="Copy";},2500);if(window.gtag)gtag("event","copy_code",{code:t});});
 document.querySelectorAll(".gf-book").forEach(function(a){a.addEventListener("click",function(){if(window.gtag)gtag("event","begin_checkout",{source:"realtor_gift",code:c});});});})();</script>
