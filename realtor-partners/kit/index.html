@@ -107,12 +107,12 @@
 function money(n){return "$"+n.toLocaleString("en-US")}
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
 function err(m){var e=$("kt-err");e.textContent=m;e.style.display=m?"block":"none"}
-var q=new URLSearchParams(location.search);if(q.get("c"))$("kt-code").value=q.get("c").toUpperCase();
+function cap(s){return String(s||"").toLowerCase().replace(/(^|\s)\S/g,function(c){return c.toUpperCase()})}var q=new URLSearchParams(location.search);if(q.get("c"))$("kt-code").value=q.get("c").toUpperCase();
 function show(d){var p=d.partner||{},r=d.referrals||[];var rv=function(x){return(x.reward===null||x.reward===undefined||x.reward==="")?REWARD:(Number(x.reward)||0)};
 var done=r.filter(function(x){return x.status==="Completed"||x.status==="Paid"}),paid=r.filter(function(x){return x.status==="Paid"});var sum=function(a){return a.reduce(function(s,x){return s+rv(x)},0)};
-$("kt-hello").textContent="Hi, "+((p.name||"partner").split(" ")[0])+"!";$("kt-mycode").textContent=p.code;
+$("kt-hello").textContent="Hi, "+cap((p.name||"partner").split(" ")[0])+"!";$("kt-mycode").textContent=p.code;
 $("s-total").textContent=money(sum(done));$("s-paid").textContent=money(sum(paid));$("s-pending").textContent=money(sum(done)-sum(paid));$("s-clients").textContent=done.length;
-var link="https://www.cleancleanersnyc.com/gift/?c="+encodeURIComponent(p.code)+(p.name?"&n="+encodeURIComponent(p.name):"")+(p.company?"&co="+encodeURIComponent(p.company):"");
+var link="https://www.cleancleanersnyc.com/gift/?c="+encodeURIComponent(p.code)+(p.name?"&n="+encodeURIComponent(cap(p.name)):"")+(p.company?"&co="+encodeURIComponent(p.company):"");
 $("kt-page").textContent=link;$("kt-openpage").href=link;
 var rows=r.slice().sort(function(a,b){return new Date(b.date)-new Date(a.date)});
 $("kt-rows").innerHTML=rows.length?rows.map(function(x){var ok=x.status==="Completed"||x.status==="Paid";return "<tr><td>"+esc(x.date)+"</td><td><b>"+esc(x.client)+"</b></td><td class='kt-hide'>"+esc(x.service)+"</td><td>"+esc(x.status)+"</td><td><b>"+(ok?money(rv(x)):"-")+"</b></td></tr>"}).join(""):"<tr><td colspan='5' style='color:var(--muted)'>No clients yet. Send your client page to your first client!</td></tr>";
