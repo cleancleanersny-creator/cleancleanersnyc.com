@@ -11,12 +11,12 @@
 </script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Partner Kit | Clean Cleaners NYC</title>
+<title>Partner Portal | Clean Cleaners NYC</title>
 <meta name="robots" content="noindex">
-<meta name="description" content="Private Partner Kit for Clean Cleaners NYC realtor and property partners.">
+<meta name="description" content="Private Partner Portal for Clean Cleaners NYC realtor and property partners.">
 <link rel="canonical" href="https://www.cleancleanersnyc.com/realtor-partners/kit/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Partner Kit | Clean Cleaners NYC">
+<meta property="og:title" content="Partner Portal | Clean Cleaners NYC">
 <meta property="og:description" content="Give your friends 20% off their first cleaning and earn credit toward your next one.">
 <meta property="og:url" content="https://www.cleancleanersnyc.com/realtor-partners/kit/">
 <meta property="og:image" content="https://www.cleancleanersnyc.com/assets/img/og-refer-a-friend.jpg">
@@ -69,17 +69,17 @@
 @media (max-width:820px){.kt-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.kt-terms{grid-template-columns:1fr}.kt-hide{display:none}}
 </style>
 <div id="kt-loginwrap"><section class="kt-hero"><div class="wrap grid g2" style="align-items:center;gap:48px">
-<div class="stack" style="gap:18px"><span class="eyebrow">Realtor &amp; Property Partner Club</span><h1>Your Partner Kit</h1>
+<div class="stack" style="gap:18px"><span class="eyebrow">Realtor &amp; Property Partner Club</span><h1>Your Partner Portal</h1>
 <p class="lead">Your private page with your reward details, your client page link and your earnings. Log in with the code and PIN from your welcome email.</p></div>
 <form class="kt-login" id="kt-form"><b style="font-family:Montserrat,sans-serif;font-size:22px;color:var(--navy)">Log in</b>
 <label class="kt-lbl">Your code<input class="kt-in" id="kt-code" required autocomplete="username" style="text-transform:uppercase"></label>
 <label class="kt-lbl">Your PIN<input class="kt-in" id="kt-pin" type="password" inputmode="numeric" required autocomplete="current-password"></label>
 <div class="kt-err" id="kt-err"></div>
-<button class="btn btn-primary" id="kt-go" type="submit" style="border:0;cursor:pointer;font-size:17px">Open my Partner Kit</button>
+<button class="btn btn-primary" id="kt-go" type="submit" style="border:0;cursor:pointer;font-size:17px">Open my Partner Portal</button>
 <p style="margin:0;font-size:14px;color:var(--muted)">Lost your PIN? Text us at <a href="sms:+19297605230">(929) 760-5230</a>.</p></form>
 </div></section></div>
 <div id="kt-dash"><section class="section"><div class="wrap stack" style="gap:28px">
-<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px"><div class="stack" style="gap:4px"><span class="eyebrow">Your Partner Kit</span><h1 id="kt-hello" style="margin:0">Hi!</h1></div><button class="kt-btn" id="kt-out" type="button">Log out</button></div>
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px"><div class="stack" style="gap:4px"><span class="eyebrow">Your Partner Portal</span><h1 id="kt-hello" style="margin:0">Hi!</h1></div><button class="kt-btn" id="kt-out" type="button">Log out</button></div>
 <div class="kt-stats">
 <div class="kt-stat hl"><small>Total earned</small><b id="s-total">$0</b></div>
 <div class="kt-stat"><small>Paid to you</small><b id="s-paid">$0</b></div>
@@ -128,7 +128,7 @@ var rows=r.slice().sort(function(a,b){return new Date(b.date)-new Date(a.date)})
 $("kt-rows").innerHTML=rows.length?rows.map(function(x){var ok=x.status==="Completed"||x.status==="Paid";return "<tr><td>"+esc(x.date)+"</td><td><b>"+esc(x.client)+"</b></td><td class='kt-hide'>"+esc(x.service)+"</td><td>"+esc(x.status)+"</td><td><b>"+(ok?money(rv(x)):"-")+"</b></td></tr>"}).join(""):"<tr><td colspan='5' style='color:var(--muted)'>No clients yet. Send your client page to your first client!</td></tr>";
 $("kt-loginwrap").style.display="none";$("kt-dash").style.display="block";window.scrollTo(0,0);}
 $("kt-form").addEventListener("submit",function(ev){ev.preventDefault();err("");var code=$("kt-code").value.trim().toUpperCase(),pin=$("kt-pin").value.trim();if(code==="DEMO"&&pin==="0000"){show(DEMO);return}var b=$("kt-go");b.disabled=true;b.textContent="Loading...";
-fetch(API+"?code="+encodeURIComponent(code)+"&pin="+encodeURIComponent(pin)).then(function(r){return r.json()}).then(function(d){if(d.ok)show(d);else err(d.error||"Code or PIN not found.")}).catch(function(){err("Could not connect. Please try again.")}).finally(function(){b.disabled=false;b.textContent="Open my Partner Kit"});});
+fetch(API+"?code="+encodeURIComponent(code)+"&pin="+encodeURIComponent(pin)).then(function(r){return r.json()}).then(function(d){if(d.ok)show(d);else err(d.error||"Code or PIN not found.")}).catch(function(){err("Could not connect. Please try again.")}).finally(function(){b.disabled=false;b.textContent="Open my Partner Portal"});});
 $("kt-out").addEventListener("click",function(){$("kt-dash").style.display="none";$("kt-loginwrap").style.display="block";$("kt-pin").value=""});
 $("kt-copypage").addEventListener("click",function(){var t=$("kt-page").textContent,btn=this;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){btn.textContent="Copied!";setTimeout(function(){btn.textContent="Copy link"},1500)}).catch(function(){prompt("Copy this:",t)})});
 })();</script>
